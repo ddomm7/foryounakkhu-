@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffc9dc">
+<title>សំបុត្រស្នេហ៍ 💌</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg1:#ffe9f1;--bg2:#ffc4d9;--ink:#7a1f45;--soft:#b04a76;--heart:#ff5c8a;--deep:#e23a71;
+  --paper:#fffdf8;--env:#ffb3cc;--env2:#ff97b9;--line:#f6cfdd;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg1:#2b1021;--bg2:#4d1a37;--ink:#ffd9e7;--soft:#f4a6c4;--paper:#3a1730;--env:#8a3560;--env2:#a8446f;--line:#5b2748}
+}
+:root[data-theme="dark"]{--bg1:#2b1021;--bg2:#4d1a37;--ink:#ffd9e7;--soft:#f4a6c4;--paper:#3a1730;--env:#8a3560;--env2:#a8446f;--line:#5b2748}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:"Noto Sans Khmer","Khmer OS",ui-rounded,system-ui,sans-serif;color:var(--ink);overflow:hidden;
+  background:radial-gradient(circle at 50% 30%,var(--bg1),var(--bg2));-webkit-tap-highlight-color:transparent;user-select:none}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:safe center;gap:20px;padding:24px 18px;text-align:center;
+  opacity:0;pointer-events:none;transform:scale(.94);transition:opacity .6s ease,transform .6s cubic-bezier(.3,1.3,.5,1);overflow-y:auto}
+.screen.on{opacity:1;pointer-events:auto;transform:none}
+.cap{font-size:clamp(1.05rem,4.4vw,1.3rem);color:var(--soft);margin:0;line-height:1.7}
+.hint{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+
+#env{position:relative;flex:none;width:min(80vw,320px);aspect-ratio:1.45;background:none;border:0;padding:0;cursor:pointer;filter:drop-shadow(0 16px 20px rgba(226,58,113,.3));animation:sway 3s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(-2deg) translateY(-4px)}}
+#env .back{position:absolute;inset:0;background:var(--env);border-radius:12px}
+#env .pocket{position:absolute;inset:0;border-radius:12px;background:var(--env2);clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%)}
+#env .flap{position:absolute;left:0;right:0;top:0;height:58%;background:var(--env2);border-radius:12px 12px 0 0;clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;transition:transform .8s ease;z-index:3;filter:brightness(1.06)}
+#env .seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:2.2rem;z-index:4;transition:opacity .3s;animation:beat 1.3s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:translate(-50%,-50%) scale(1)}20%{transform:translate(-50%,-50%) scale(1.25)}40%{transform:translate(-50%,-50%) scale(1)}}
+#env.open{animation:none}
+#env.open .flap{transform:rotateX(180deg);z-index:0}
+#env.open .seal{opacity:0}
+
+.paper{flex:none;width:min(92vw,420px);background:var(--paper);border-radius:18px;padding:24px 22px 20px;box-shadow:0 18px 40px rgba(122,31,69,.25);
+  background-image:repeating-linear-gradient(transparent 0 41px,var(--line) 41px 42px);background-position:0 20px}
+.paper h2{font-size:clamp(1.3rem,5.6vw,1.6rem);margin:0 0 4px;font-weight:600;color:var(--deep);text-align:left;line-height:42px}
+.paper .txt{font-size:clamp(1.05rem,4.5vw,1.2rem);line-height:42px;margin:0;color:var(--ink);text-align:left;min-height:9.5em}
+.sig{font-size:1.15rem;text-align:right;margin-top:6px;color:var(--deep);font-weight:500;line-height:42px}
+
+#count{display:none;flex:none;flex-direction:column;align-items:center;gap:10px}
+#count.show{display:flex;animation:fade .8s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}}
+.cells{display:flex;gap:8px}
+.cell{background:var(--paper);border-radius:14px;padding:10px 0;width:72px;box-shadow:0 6px 14px rgba(122,31,69,.15)}
+.cell b{display:block;font-size:1.5rem;color:var(--deep);line-height:1.4}
+.cell span{font-size:.85rem;color:var(--soft)}
+.since{background:var(--paper);border-radius:14px;padding:10px 16px;font-size:.95rem;color:var(--ink);box-shadow:0 6px 14px rgba(122,31,69,.15);max-width:92vw;line-height:1.7}
+.since small{display:block;color:var(--soft);font-size:.8rem}
+
+.fl{position:fixed;pointer-events:none;z-index:1;animation:rise linear forwards}
+@keyframes rise{from{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.85}to{transform:translateY(-110vh) rotate(60deg);opacity:0}}
+.petal{position:fixed;top:-30px;pointer-events:none;z-index:1;animation:fall linear forwards}
+@keyframes fall{from{transform:translate(0,0) rotate(0);opacity:0}8%{opacity:.9}to{transform:translate(var(--dx),110vh) rotate(360deg);opacity:.9}}
+@media (prefers-reduced-motion:reduce){#env,.hint,.seal{animation:none}.fl,.petal{display:none}}
+</style>
+</head>
+<body>
+
+<section class="screen" id="s1">
+  <p class="cap">សំបុត្រមួយសម្រាប់អូន…</p>
+  <button id="env" aria-label="ចុចដើម្បីបើកសំបុត្រ">
+    <div class="back"></div><div class="pocket"></div><div class="flap"></div><div class="seal">💖</div>
+  </button>
+  <p class="cap hint">ចុចលើស្រោមសំបុត្រ</p>
+</section>
+
+<section class="screen" id="s2">
+  <div class="paper">
+    <h2 id="to"></h2>
+    <p class="txt" id="txt"></p>
+    <div class="sig" id="sig"></div>
+  </div>
+  <div id="count">
+    <p class="cap" id="ttl">យើងនៅជាមួយគ្នាអស់រយៈពេល 💕</p>
+    <div class="cells">
+      <div class="cell"><b id="d">០</b><span>ថ្ងៃ</span></div>
+      <div class="cell"><b id="h">០</b><span>ម៉ោង</span></div>
+      <div class="cell"><b id="m">០</b><span>នាទី</span></div>
+      <div class="cell"><b id="s">០</b><span>វិនាទី</span></div>
+    </div>
+    <div class="since"><small>ថ្ងៃដែលយើងចាប់ផ្តើម</small><span id="when"></span></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // ✏️ Optional: put her name and your name between the quotes
+  var HER_NAME = "";
+  var HIS_NAME = "";
+  var MESSAGE  = "អរគុណអូនដែលផ្តល់ឱកាសឱ្យបងបានចូលមកក្នុងជីវិតអូន និងព្រមចាប់ផ្តើមដំណើរមួយនេះជាមួយគ្នា ❤️ បងមិនដឹងថាថ្ងៃអនាគតនឹងមានរឿងអ្វីកើតឡើងខ្លះទេ ប៉ុន្តែបងចង់ឱ្យអូនដឹងថា បងនឹងខិតខំថែរក្សាទំនាក់ទំនងរបស់យើងឱ្យបានល្អបំផុត។ បងមិនសន្យាថានឹងធ្វើអ្វីៗបានល្អឥតខ្ចោះគ្រប់ពេលទេ តែបងសន្យាថានឹងស្តាប់ យល់ចិត្ត គោរព និងមិនឈប់ព្យាយាមដើម្បីយើងទាំងពីរ។ ពេលអូនសប្បាយ បងចង់សើចជាមួយអូន ហើយពេលអូនពិបាកចិត្ត បងក៏ចង់នៅក្បែរអូន និងស្តាប់អូនដែរ។ សូមឱ្យយើងចេះនិយាយគ្នាដោយស្មោះត្រង់ អត់ឱនឱ្យគ្នា និងកុំបោះបង់គ្នាងាយៗ។ អរគុណដែលបានជ្រើសរើសបង 🥹💕 បងសង្ឃឹមថា រាល់ថ្ងៃបន្ទាប់ពីនេះ នឹងមានស្នាមញញឹមតូចៗ និងអនុស្សាវរីយ៍ល្អៗជាច្រើនរបស់យើង។ បងរីករាយណាស់ដែលមានអូន ❤️";
+  var KEY = "love-start-v1";
+
+  var $ = function(id){return document.getElementById(id)};
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var icons = ["💖","💗","💕","🌸","✨"];
+  var KD = "០១២៣៤៥៦៧៨៩";
+  function kh(n){return String(n).replace(/\d/g,function(c){return KD[c]})}
+  var months = ["មករា","កុម្ភៈ","មីនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ"];
+  var days = ["អាទិត្យ","ចន្ទ","អង្គារ","ពុធ","ព្រហស្បតិ៍","សុក្រ","សៅរ៍"];
+  function pad(n){return n<10?"0"+n:""+n}
+  function fmt(ts){
+    var t = new Date(ts);
+    return "ថ្ងៃ"+days[t.getDay()]+" ទី"+kh(t.getDate())+" ខែ"+months[t.getMonth()]+" ឆ្នាំ"+kh(t.getFullYear())+" ម៉ោង "+kh(pad(t.getHours())+":"+pad(t.getMinutes()));
+  }
+
+  // saved start time (kept on this phone)
+  var mem = null;
+  function load(){try{var v=localStorage.getItem(KEY);return v?parseInt(v,10):null}catch(e){return mem}}
+  function save(v){mem=v;try{localStorage.setItem(KEY,String(v))}catch(e){}}
+  function wipe(){mem=null;try{localStorage.removeItem(KEY)}catch(e){}}
+
+  $("to").textContent  = "ជូនអ្នកគ្រូ ❤️";
+  $("sig").textContent = HIS_NAME ? "ពីបង "+HIS_NAME+" 💌" : "ពីបង 💌";
+
+  setInterval(function(){
+    if(calm) return;
+    var e = document.createElement("span");
+    e.className = "fl";
+    e.textContent = icons[Math.floor(Math.random()*icons.length)];
+    e.style.cssText = "left:"+(Math.random()*100)+"vw;bottom:-40px;font-size:"+(16+Math.random()*22)+"px;animation-duration:"+(7+Math.random()*6)+"s";
+    document.body.appendChild(e);
+    e.addEventListener("animationend",function(){e.remove()});
+  },700);
+
+  function petals(n){
+    if(calm) return;
+    for(var i=0;i<n;i++){
+      setTimeout(function(){
+        var p = document.createElement("span");
+        p.className = "petal";
+        p.textContent = Math.random()<.7 ? "🌸" : "🌷";
+        p.style.cssText = "left:"+(Math.random()*100)+"vw;font-size:"+(18+Math.random()*16)+"px;--dx:"+(Math.random()*120-60)+"px;animation-duration:"+(5+Math.random()*5)+"s";
+        document.body.appendChild(p);
+        p.addEventListener("animationend",function(){p.remove()});
+      },i*180);
+    }
+  }
+
+  function typeText(text){
+    var el = $("txt"), parts;
+    try{ parts = Array.from(new Intl.Segmenter("km",{granularity:"grapheme"}).segment(text),function(s){return s.segment}); }catch(e){ parts = null; }
+    function done(){ $("count").classList.add("show"); petals(20); }
+    if(!parts){ el.textContent = text; done(); return; }
+    var i = 0;
+    (function step(){
+      el.textContent = parts.slice(0,++i).join("");
+      if(i<parts.length) setTimeout(step,45); else done();
+    })();
+  }
+
+  var start = load();
+  function tick(){
+    if(!start) return;
+    var t = Math.max(0,Math.floor((Date.now()-start)/1000));
+    $("d").textContent = kh(Math.floor(t/86400));
+    $("h").textContent = kh(Math.floor(t%86400/3600));
+    $("m").textContent = kh(Math.floor(t%3600/60));
+    $("s").textContent = kh(t%60);
+  }
+  setInterval(tick,1000);
+
+  function showLetter(instant){
+    $("when").textContent = fmt(start);
+    tick();
+    $("s1").classList.remove("on");
+    $("s2").classList.add("on");
+    if(instant){ $("txt").textContent = MESSAGE; $("count").classList.add("show"); petals(12); }
+    else setTimeout(function(){ typeText(MESSAGE); },500);
+  }
+
+  if(start){ showLetter(true); }
+  else { $("s1").classList.add("on"); }
+
+  var opened = false;
+  $("env").addEventListener("click",function(){
+    if(opened) return; opened = true;
+    start = Date.now();          // the moment she opens it = the day you started
+    save(start);
+    this.classList.add("open");
+    if(navigator.vibrate) navigator.vibrate(40);
+    petals(10);
+    setTimeout(function(){ showLetter(false); },1100);
+  });
+
+  // Secret reset for you: press and hold the "together for" text for 4 seconds
+  var hold = null;
+  function arm(){ hold = setTimeout(function(){
+    if(confirm("Reset the start time? Only do this to test before giving it to her.")){ wipe(); location.reload(); }
+  },4000); }
+  function disarm(){ clearTimeout(hold); }
+  var ttl = $("ttl");
+  ["touchstart","mousedown"].forEach(function(ev){ttl.addEventListener(ev,arm)});
+  ["touchend","touchcancel","mouseup","mouseleave"].forEach(function(ev){ttl.addEventListener(ev,disarm)});
+})();
+</script>
+</body>
+</html>
